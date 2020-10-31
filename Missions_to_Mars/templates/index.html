@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Scaping Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h1>Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Latest Data</a></p>
+    </div>      
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Featured Mars Image</h3>
+        <img src= {{ mars.featured_img_link  }} />
+        <h3>Mars news</h3>
+        <h4>{{ mars.news_title }}</h4>
+        <p>{{ mars.news_parag }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">        
+        <h3>Mars Facts</h3>
+        {{ mars.facts|safe }}
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid padding">
+    <div class="row padding">
+  
+     {% for mars_img in mars.img_urls %}
+      <div class="col-md-6">
+        <div class="card text-center">
+          <img class="card-img-top" src="{{ mars_img.img_url }}" style="max-width:100%; max-height: auto;">
+          <div class="card-body">
+            <h4 class="card-title">{{mars_img.title}}</h4>
+          </div>
+        </div>
+      </div>
+     {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
+
